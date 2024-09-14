@@ -1,6 +1,7 @@
 const Category = require("../../models/categorie"); 
 
 exports.getCategories = async (req, res) => {
+
   try {
     const categories = await Category.find();
     res.status(200).send(categories);
@@ -49,6 +50,7 @@ exports.addCategory = async (req, res) => {
   };
 
   exports.updateCategory = async (req, res) => {
+    
     try {
       const id = req.params.id;
       const updatedData = req.body;

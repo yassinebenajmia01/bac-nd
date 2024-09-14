@@ -2,7 +2,8 @@ const Book=require("../../models/book")
 exports.getBooks = async (req, res) => {
     try {
         const books = await Book.find(); 
-        res.status(200).send({ message: "Success", books }); 
+        console.log('first',books)
+        res.status(200).send({ books }); 
     } catch (error) {
         res.status(500).send({ message: "Error fetching books", error }); 
     }
