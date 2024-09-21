@@ -13,25 +13,20 @@ const generateToken = (id) => {
 
 const signup = async (req, res) => {
   try {
-    const { firstname, email, phonenumber, password} = req.body;
-
-
-    const existingClient = await Client.findOne({ email });
-    if (existingClient) {
-      return res.status(400).json({ message: 'Email already in use' });
-    }
+    const { firstname, email, phoneNumber, password,adresse,matricule} = req.body;
 
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
 
-    const newClient = new Client({ name, email, phonenumber, password: hashedPassword });
+    const newClient = new Client({ firstname, email, phoneNumber, password: hashedPassword ,adresse,matricule});
+    console.log("first",newClient)
     await newClient.save();
 
 
     const token = generateToken(newClient._id);
 
-    res.status(201).json({ token, client: newClient });
+    res.status(200).json({ token, client: newClient });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
