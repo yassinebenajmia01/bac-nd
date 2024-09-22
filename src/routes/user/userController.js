@@ -13,13 +13,13 @@ const generateToken = (id) => {
 
 const signup = async (req, res) => {
   try {
-    const { firstname, email, phoneNumber, password,adresse,matricule} = req.body;
+    const {firstName,lastName,email,password,street,city,state,postalCode,avatar,phoneNumber} = req.body;
 
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
 
-    const newClient = new Client({ firstname, email, phoneNumber, password: hashedPassword ,adresse,matricule});
+    const newClient = new Client({ firstnamelastName ,email,password: hashedPassword ,street,city,state,postalCode,avatar,phoneNumber});
     console.log("first",newClient)
     await newClient.save();
 
